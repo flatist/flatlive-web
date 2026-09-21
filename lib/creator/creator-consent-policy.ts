@@ -1,0 +1,5 @@
+export const CREATOR_POLICY_VERSION =
+  "2026-09-04";
+
+export const MUSIC_IP_POLICY_VERSION =
+  "2026-05-15";
