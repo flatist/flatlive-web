@@ -35,7 +35,7 @@ export default function OperationPolicyPage() {
       <div className="mx-auto max-w-3xl">
         <Link
           href="/"
-          className="text-sm font-bold text-violet-400"
+          className="text-sm font-bold text-flat-yellow"
         >
           ← FLAT LIVE
         </Link>

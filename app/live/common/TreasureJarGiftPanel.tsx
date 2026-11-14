@@ -422,7 +422,7 @@ export default function TreasureJarGiftPanel({
           </div>
         </>
       ) : (
-        <div className="mt-4 rounded-2xl border border-violet-300/15 bg-black/30 p-4">
+        <div className="mt-4 rounded-2xl border border-flat-yellow/15 bg-black/30 p-4">
           {/* FLATLIVE_PORTAL_JAR_CONFIG_V2_11 */}
           <div className="flex items-center justify-between">
             <div>
@@ -433,7 +433,7 @@ export default function TreasureJarGiftPanel({
                 다른 활성 LIVE 일부에 랜덤 노출해 현재 방송으로 시청자를 초대합니다.
               </p>
             </div>
-            <span className="text-lg font-black text-violet-300">
+            <span className="text-lg font-black text-flat-yellow">
               {portalPriceFlat.toLocaleString()} FLAT
             </span>
           </div>

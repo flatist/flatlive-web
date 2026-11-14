@@ -230,7 +230,7 @@ export default function ReportModal({
             },
           }}
           onClick={onClose}
-          className="mt-4 flex w-full items-center justify-between rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm font-black text-violet-300 transition hover:bg-violet-500/20"
+          className="mt-4 flex w-full items-center justify-between rounded-xl border border-flat-yellow/30 bg-flat-yellow/10 px-4 py-3 text-sm font-black text-flat-yellow transition hover:bg-flat-yellow/20"
         >
           <span>권리침해 신고센터</span>
           <span>→</span>

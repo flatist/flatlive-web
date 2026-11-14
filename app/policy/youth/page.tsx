@@ -65,7 +65,7 @@ export default function YouthPolicyPage() {
   return (
     <main className="min-h-screen bg-black px-4 py-10 text-white">
       <div className="mx-auto max-w-3xl">
-        <Link href="/" className="text-sm font-bold text-violet-400">
+        <Link href="/" className="text-sm font-bold text-flat-yellow">
           ← FLAT LIVE
         </Link>
 

@@ -345,7 +345,7 @@ export default async function Home() {
             <Link href="/policy/community">커뮤니티 가이드라인</Link>
             <Link href="/policy/copyright">저작권·음원정책</Link>
             <Link href="/policy/ai">AI 콘텐츠 정책</Link>
-            <Link href="/report" className="text-violet-300">
+            <Link href="/report" className="text-flat-yellow">
               권리침해 신고센터
             </Link>
           </div>

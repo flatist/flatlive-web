@@ -101,7 +101,7 @@ export function UnifiedUserStatusCard({
         </div>
         <div className="rounded-xl bg-zinc-900/80 p-3">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Joined service</p>
-          <p className="mt-2 font-medium text-violet-300">
+          <p className="mt-2 font-medium text-flat-yellow">
             {serviceAccess?.service ?? "없음"}
           </p>
         </div>
