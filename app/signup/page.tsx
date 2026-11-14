@@ -5,14 +5,20 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import { useAuth } from "@/lib/auth-context";
-
-const inputClass =
-  "w-full rounded-2xl border border-zinc-800 bg-black px-4 py-3 text-sm font-medium text-white placeholder:text-zinc-600 outline-none transition focus:border-flat-yellow focus:ring-2 focus:ring-flat-yellow/20";
-
-const labelClass = "mb-2 block text-xs font-black tracking-wide text-zinc-400";
-
-const checkboxClass =
-  "mt-0.5 h-4 w-4 shrink-0 rounded-sm border-zinc-700 bg-black accent-flat-yellow";
+import {
+  authButtonClass,
+  authCardClass,
+  authCheckboxClass,
+  authErrorClass,
+  authEyebrowClass,
+  authGlowClass,
+  authInputClass,
+  authLabelClass,
+  authLinkClass,
+  authMainClass,
+  authSubtitleClass,
+  authWordmarkClass,
+} from "@/lib/auth-ui";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -84,29 +90,24 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-flat-black px-4 py-10 text-white md:px-6 md:py-20">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-flat-yellow/10 blur-[120px]"
-      />
+    <main className={authMainClass}>
+      <div aria-hidden className={authGlowClass} />
 
       <div className="relative mx-auto max-w-md">
-        <div className="rounded-[28px] border border-white/[0.08] bg-flat-surface p-6 shadow-2xl shadow-black/50 md:p-8">
+        <div className={authCardClass}>
           <div className="mb-8 text-center">
-            <p className="mb-3 text-[10px] font-black tracking-[0.3em] text-flat-yellow">
-              JOIN FLATLIVE
-            </p>
+            <p className={authEyebrowClass}>JOIN FLATLIVE</p>
 
-            <Link href="/" className="inline-block text-2xl font-black tracking-tight">
+            <Link href="/" className={authWordmarkClass}>
               FLAT<span className="text-flat-yellow">LIVE</span>
             </Link>
 
-            <p className="mt-2 text-sm text-zinc-400">새 계정을 만들어 FLAT LIVE를 시작하세요</p>
+            <p className={authSubtitleClass}>새 계정을 만들어 FLAT LIVE를 시작하세요</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="username" className={labelClass}>
+              <label htmlFor="username" className={authLabelClass}>
                 아이디
               </label>
               <input
@@ -115,12 +116,12 @@ export default function SignupPage() {
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 placeholder="username"
-                className={inputClass}
+                className={authInputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="email" className={labelClass}>
+              <label htmlFor="email" className={authLabelClass}>
                 이메일
               </label>
               <input
@@ -129,12 +130,12 @@ export default function SignupPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="you@example.com"
-                className={inputClass}
+                className={authInputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="displayName" className={labelClass}>
+              <label htmlFor="displayName" className={authLabelClass}>
                 닉네임
               </label>
               <input
@@ -143,12 +144,12 @@ export default function SignupPage() {
                 value={displayName}
                 onChange={(event) => setDisplayName(event.target.value)}
                 placeholder="닉네임"
-                className={inputClass}
+                className={authInputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="password" className={labelClass}>
+              <label htmlFor="password" className={authLabelClass}>
                 비밀번호
               </label>
               <input
@@ -157,12 +158,12 @@ export default function SignupPage() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="비밀번호를 입력하세요"
-                className={inputClass}
+                className={authInputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className={labelClass}>
+              <label htmlFor="confirmPassword" className={authLabelClass}>
                 비밀번호 확인
               </label>
               <input
@@ -171,12 +172,12 @@ export default function SignupPage() {
                 value={confirmPassword}
                 onChange={(event) => setConfirmPassword(event.target.value)}
                 placeholder="비밀번호를 다시 입력하세요"
-                className={inputClass}
+                className={authInputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="birthDate" className={labelClass}>
+              <label htmlFor="birthDate" className={authLabelClass}>
                 생년월일
               </label>
 
@@ -186,7 +187,7 @@ export default function SignupPage() {
                 value={birthDate}
                 onChange={(event) => setBirthDate(event.target.value)}
                 required
-                className={`${inputClass} [color-scheme:dark]`}
+                className={`${authInputClass} [color-scheme:dark]`}
               />
 
               <p className="mt-2 text-xs leading-5 text-zinc-500">
@@ -206,7 +207,7 @@ export default function SignupPage() {
                   type="checkbox"
                   checked={termsAccepted}
                   onChange={(event) => setTermsAccepted(event.target.checked)}
-                  className={checkboxClass}
+                  className={authCheckboxClass}
                 />
 
                 <span className="text-sm text-zinc-300">
@@ -220,7 +221,7 @@ export default function SignupPage() {
                   type="checkbox"
                   checked={privacyAccepted}
                   onChange={(event) => setPrivacyAccepted(event.target.checked)}
-                  className={checkboxClass}
+                  className={authCheckboxClass}
                 />
 
                 <span className="text-sm text-zinc-300">
@@ -234,7 +235,7 @@ export default function SignupPage() {
                   type="checkbox"
                   checked={operationPolicyAccepted}
                   onChange={(event) => setOperationPolicyAccepted(event.target.checked)}
-                  className={checkboxClass}
+                  className={authCheckboxClass}
                 />
 
                 <span className="text-sm text-zinc-300">
@@ -243,38 +244,12 @@ export default function SignupPage() {
                 </span>
               </label>
 
-              <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/[0.08] pt-3 text-xs">
-                <Link
-                  href="/policy/terms"
-                  target="_blank"
-                  className="font-black text-flat-yellow transition hover:text-flat-yellow-soft"
-                >
-                  이용약관 보기
-                </Link>
-
-                <Link
-                  href="/policy/privacy"
-                  target="_blank"
-                  className="font-black text-flat-yellow transition hover:text-flat-yellow-soft"
-                >
-                  개인정보처리방침 보기
-                </Link>
-
-                <Link
-                  href="/policy/operation"
-                  target="_blank"
-                  className="font-black text-flat-yellow transition hover:text-flat-yellow-soft"
-                >
-                  운영정책 보기
-                </Link>
-              </div>
-
               <label className="flex cursor-pointer items-start gap-3 py-2">
                 <input
                   type="checkbox"
                   checked={ageConfirmed}
                   onChange={(event) => setAgeConfirmed(event.target.checked)}
-                  className={checkboxClass}
+                  className={authCheckboxClass}
                 />
 
                 <span className="text-sm text-zinc-300">
@@ -288,7 +263,7 @@ export default function SignupPage() {
                   type="checkbox"
                   checked={marketingAccepted}
                   onChange={(event) => setMarketingAccepted(event.target.checked)}
-                  className={checkboxClass}
+                  className={authCheckboxClass}
                 />
 
                 <span className="text-sm text-zinc-300">
@@ -296,32 +271,36 @@ export default function SignupPage() {
                   이벤트 및 마케팅 정보 수신에 동의합니다.
                 </span>
               </label>
+
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/[0.08] pt-3 text-xs">
+                <Link href="/policy/terms" target="_blank" className={authLinkClass}>
+                  이용약관 보기
+                </Link>
+
+                <Link href="/policy/privacy" target="_blank" className={authLinkClass}>
+                  개인정보처리방침 보기
+                </Link>
+
+                <Link href="/policy/operation" target="_blank" className={authLinkClass}>
+                  운영정책 보기
+                </Link>
+              </div>
             </div>
 
             {error ? (
-              <p
-                role="alert"
-                className="rounded-2xl border border-rose-500/30 bg-rose-500/[0.07] px-4 py-3 text-sm font-bold text-rose-300"
-              >
+              <p role="alert" className={authErrorClass}>
                 {error}
               </p>
             ) : null}
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full rounded-2xl bg-flat-yellow px-4 py-4 text-sm font-black text-black transition hover:bg-flat-yellow-soft disabled:cursor-not-allowed disabled:opacity-40"
-            >
+            <button type="submit" disabled={isSubmitting} className={authButtonClass}>
               {isSubmitting ? "가입 중..." : "회원가입"}
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm text-zinc-400">
             이미 계정이 있으신가요?{" "}
-            <Link
-              href="/login"
-              className="font-black text-flat-yellow transition hover:text-flat-yellow-soft"
-            >
+            <Link href="/login" className={authLinkClass}>
               로그인
             </Link>
           </div>

@@ -3,6 +3,22 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
+import {
+  authButtonClass,
+  authButtonLinkClass,
+  authCardClass,
+  authErrorClass,
+  authEyebrowClass,
+  authGlowClass,
+  authInputClass,
+  authLabelClass,
+  authLinkClass,
+  authMainClass,
+  authSubtitleClass,
+  authSuccessClass,
+  authWordmarkClass,
+} from "@/lib/auth-ui";
+
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -46,36 +62,38 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black px-4 py-10 text-white md:px-6 md:py-20">
-      <div className="mx-auto max-w-md">
-        <div className="rounded-[28px] border border-white/10 bg-zinc-950/90 p-6 shadow-2xl shadow-black/30 md:p-8">
+    <main className={authMainClass}>
+      <div aria-hidden className={authGlowClass} />
+
+      <div className="relative mx-auto max-w-md">
+        <div className={authCardClass}>
           <div className="mb-8 text-center">
-            <Link href="/" className="inline-block text-2xl font-black tracking-tight">
-              FLAT<span className="text-violet-400">LIVE</span>
+            <p className={authEyebrowClass}>RESET PASSWORD</p>
+
+            <Link href="/" className={authWordmarkClass}>
+              FLAT<span className="text-flat-yellow">LIVE</span>
             </Link>
-            <p className="mt-2 text-sm text-zinc-400">비밀번호를 재설정하세요</p>
+
+            <p className={authSubtitleClass}>비밀번호를 재설정하세요</p>
           </div>
 
           {isSent ? (
             <div className="space-y-4">
-              <div className="rounded-xl bg-green-950/30 border border-green-900/50 p-4">
-                <p className="text-sm text-green-300">{message}</p>
-                <p className="mt-2 text-xs text-green-400">
+              <div role="status" className={authSuccessClass}>
+                <p className="text-sm font-bold text-flat-yellow">{message}</p>
+                <p className="mt-2 text-xs leading-5 text-zinc-400">
                   받은 편지함을 확인하고 재설정 링크를 클릭해주세요.
                 </p>
               </div>
 
-              <Link
-                href="/login"
-                className="block w-full rounded-2xl bg-violet-600 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-violet-500"
-              >
+              <Link href="/login" className={authButtonLinkClass}>
                 로그인으로 돌아가기
               </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-300">
+                <label htmlFor="email" className={authLabelClass}>
                   이메일
                 </label>
                 <input
@@ -84,29 +102,30 @@ export default function ForgotPasswordPage() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30"
+                  className={authInputClass}
                 />
               </div>
 
               {error ? (
-                <p className="text-sm font-medium text-rose-400">{error}</p>
+                <p role="alert" className={authErrorClass}>
+                  {error}
+                </p>
               ) : null}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
-              >
+              <button type="submit" disabled={isSubmitting} className={authButtonClass}>
                 {isSubmitting ? "발송 중..." : "재설정 이메일 발송"}
               </button>
             </form>
           )}
 
-          <div className="mt-6 text-center text-sm text-zinc-400">
-            <Link href="/login" className="font-bold text-violet-400 transition hover:text-violet-300">
-              로그인으로 돌아가기
-            </Link>
-          </div>
+          {/* 발송 완료 화면에는 같은 문구의 CTA 버튼이 이미 있으므로 중복 노출하지 않는다. */}
+          {isSent ? null : (
+            <div className="mt-6 text-center text-sm text-zinc-400">
+              <Link href="/login" className={authLinkClass}>
+                로그인으로 돌아가기
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </main>

@@ -4,6 +4,22 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useState } from "react";
 
+import {
+  authButtonClass,
+  authButtonLinkClass,
+  authCardClass,
+  authErrorClass,
+  authEyebrowClass,
+  authGlowClass,
+  authInputClass,
+  authLabelClass,
+  authLinkClass,
+  authMainClass,
+  authSubtitleClass,
+  authSuccessClass,
+  authWordmarkClass,
+} from "@/lib/auth-ui";
+
 function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -19,14 +35,11 @@ function ResetPasswordForm() {
   if (!userId || !token) {
     return (
       <div className="space-y-4">
-        <div className="rounded-xl bg-rose-950/30 border border-rose-900/50 p-4">
-          <p className="text-sm text-rose-300">잘못된 재설정 링크입니다.</p>
-        </div>
+        <p role="alert" className={authErrorClass}>
+          잘못된 재설정 링크입니다.
+        </p>
 
-        <Link
-          href="/forgot-password"
-          className="block w-full rounded-2xl bg-violet-600 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-violet-500"
-        >
+        <Link href="/forgot-password" className={authButtonLinkClass}>
           처음부터 시작하기
         </Link>
       </div>
@@ -81,16 +94,14 @@ function ResetPasswordForm() {
   return (
     <>
       {isSuccess ? (
-        <div className="space-y-4">
-          <div className="rounded-xl bg-green-950/30 border border-green-900/50 p-4">
-            <p className="text-sm text-green-300">비밀번호가 변경되었습니다.</p>
-            <p className="mt-2 text-xs text-green-400">로그인 페이지로 이동합니다...</p>
-          </div>
+        <div role="status" className={authSuccessClass}>
+          <p className="text-sm font-bold text-flat-yellow">비밀번호가 변경되었습니다.</p>
+          <p className="mt-2 text-xs leading-5 text-zinc-400">로그인 페이지로 이동합니다...</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="password" className="mb-2 block text-sm font-medium text-zinc-300">
+            <label htmlFor="password" className={authLabelClass}>
               새 비밀번호
             </label>
             <input
@@ -99,12 +110,12 @@ function ResetPasswordForm() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="새 비밀번호를 입력하세요"
-              className="w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30"
+              className={authInputClass}
             />
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="mb-2 block text-sm font-medium text-zinc-300">
+            <label htmlFor="confirmPassword" className={authLabelClass}>
               비밀번호 확인
             </label>
             <input
@@ -113,19 +124,17 @@ function ResetPasswordForm() {
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
               placeholder="비밀번호를 다시 입력하세요"
-              className="w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30"
+              className={authInputClass}
             />
           </div>
 
           {error ? (
-            <p className="text-sm font-medium text-rose-400">{error}</p>
+            <p role="alert" className={authErrorClass}>
+              {error}
+            </p>
           ) : null}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full rounded-2xl bg-violet-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
-          >
+          <button type="submit" disabled={isSubmitting} className={authButtonClass}>
             {isSubmitting ? "처리 중..." : "비밀번호 변경"}
           </button>
         </form>
@@ -136,14 +145,19 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <main className="min-h-screen bg-black px-4 py-10 text-white md:px-6 md:py-20">
-      <div className="mx-auto max-w-md">
-        <div className="rounded-[28px] border border-white/10 bg-zinc-950/90 p-6 shadow-2xl shadow-black/30 md:p-8">
+    <main className={authMainClass}>
+      <div aria-hidden className={authGlowClass} />
+
+      <div className="relative mx-auto max-w-md">
+        <div className={authCardClass}>
           <div className="mb-8 text-center">
-            <Link href="/" className="inline-block text-2xl font-black tracking-tight">
-              FLAT<span className="text-violet-400">LIVE</span>
+            <p className={authEyebrowClass}>NEW PASSWORD</p>
+
+            <Link href="/" className={authWordmarkClass}>
+              FLAT<span className="text-flat-yellow">LIVE</span>
             </Link>
-            <p className="mt-2 text-sm text-zinc-400">새로운 비밀번호를 설정하세요</p>
+
+            <p className={authSubtitleClass}>새로운 비밀번호를 설정하세요</p>
           </div>
 
           <Suspense fallback={<div className="text-center text-sm text-zinc-400">로드 중...</div>}>
@@ -151,7 +165,7 @@ export default function ResetPasswordPage() {
           </Suspense>
 
           <div className="mt-6 text-center text-sm text-zinc-400">
-            <Link href="/login" className="font-bold text-violet-400 transition hover:text-violet-300">
+            <Link href="/login" className={authLinkClass}>
               로그인으로 돌아가기
             </Link>
           </div>
