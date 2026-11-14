@@ -10,6 +10,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* FLATLIVE brand tokens -> enables text-/bg-/border-/ring-flat-* utilities
+     (incl. opacity modifiers such as border-flat-yellow/30) */
+  --color-flat-yellow: #f6c900;
+  --color-flat-yellow-soft: #ffd83d;
+  --color-flat-black: #090909;
+  --color-flat-surface: #111111;
+  --color-flat-surface-2: #181818;
 }
 
 @media (prefers-color-scheme: dark) {
